@@ -51,4 +51,4 @@ modules:
       - selinux_policy.sh
       - cachyos_kernel_override.sh
       # this sets up the proper policy & signing files for signed images to work
-      # - signing.sh
+      - signing.sh
