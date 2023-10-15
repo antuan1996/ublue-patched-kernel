@@ -52,3 +52,4 @@ modules:
       - cachyos_kernel_override.sh
       # this sets up the proper policy & signing files for signed images to work
       - signing.sh
+      - install_nvidia.sh
