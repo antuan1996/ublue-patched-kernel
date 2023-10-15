@@ -9,4 +9,4 @@ set -oue pipefail
 echo 'Install nvidia kmods'
 find /tmp/rpms
 rpm-ostree install /tmp/rpms/ublue-os/ublue-os-nvidia*.rpm
-rpm-ostree install /tmp/rpms/kmods/kmod-nvidia.rpm
+rpm-ostree install /tmp/rpms/kmods/kmod-nvidia*.rpm
