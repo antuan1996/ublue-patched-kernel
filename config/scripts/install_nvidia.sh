@@ -5,8 +5,11 @@
 # builds actually ran successfully without any errors!
 set -oue pipefail
 
+readonly NVIDIA_MAJOR_VERSION="535"
+
 # Your code goes here.
 echo 'Install nvidia kmods'
 find /tmp/rpms
-rpm-ostree install /tmp/rpms/ublue-os/ublue-os-nvidia*.rpm
-rpm-ostree install /tmp/rpms/kmods/kmod-nvidia*.rpm
+rpm-ostree install /tmp/rpms/ublue-os/ublue-os-nvidia-addons*.rpm
+source /tmp/rpms/kmods/nvidia-vars.${NVIDIA_MAJOR_VERSION}
+rpm-ostree install /tmp/rpms/kmods/kmod-${NVIDIA_PACKAGE_NAME}-${KERNEL_VERSION}-${NVIDIA_AKMOD_VERSION}.fc${RELEASE}.rpm
