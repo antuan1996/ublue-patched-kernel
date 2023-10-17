@@ -1,7 +1,7 @@
 # image will be published to ghcr.io/<user>/<name>
 name: ublue-patched-kernel
 # description will be included in the image's metadata
-description: Silverblue image with custom kernel
+description: Ublue image with custom kernel and nvidia drivers
 
 # the base image to build on top of (FROM) and the version tag to use
 base-image: ghcr.io/ublue-os/silverblue-nokmods
@@ -22,12 +22,13 @@ modules:
     repos:
       - https://copr.fedorainfracloud.org/coprs/bieszczaders/kernel-cachyos/repo/fedora-%OS_VERSION%/bieszczaders-kernel-cachyos-fedora-%OS_VERSION%.repo
     install:
-      # - micro
-      # - starship
+      - tlp
+      - tlp-rdw
+      - splix
     remove:
       - firefox # default firefox removed in favor of flatpak
       - firefox-langpacks # langpacks needs to also be removed to prevent dependency problems
-
+      - power-profiles-daemon
   - type: bling # configure what to pull in from ublue-os/bling
     install:
       - fonts # selection of common good free fonts
@@ -50,6 +51,7 @@ modules:
     scripts:
       - selinux_policy.sh
       - cachyos_kernel_override.sh
+      - tlp_post_install.sh
       - install_nvidia.sh
       # this sets up the proper policy & signing files for signed images to work
       - signing.sh
